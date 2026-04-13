@@ -4,11 +4,19 @@ on:
   pull_request:
     branches: [main]
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   static_checks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
 
       # need to use pw script at least once even when activating the context so that the wrapper installs pyprojectx
       - run: ./pw uv sync --locked
@@ -18,6 +26,9 @@ jobs:
 
       - name: typescript typecheck
         run: uv run npm run typecheck
+
+      - name: zizmor
+        run: uv run zizmor . --persona=auditor
 
       - run: uv run npm run check
 
@@ -33,6 +44,9 @@ jobs:
       - name: pylint
         run: uv run npm run pylint
 
+      - name: validate docs
+        run: uv run mkdocs build --strict
+
   tests:
     strategy:
       fail-fast: false
@@ -42,9 +56,11 @@ jobs:
     name: Test ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
         id: install_python
 
       - run: ./pw uv sync
