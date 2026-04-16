@@ -123,6 +123,14 @@ junit.xml
 .DS_Store
 Thumbs.db
 
+# Potential venv
+.venv
+
+# Agent files
+serena/
+.beads/
+AGENTS.md
+
 # python stuff
 **/__pycache__
 # while this isn't usually needed in venvs created by uv (which we use in this project) because they contain their own `.gitignore` file, some contributors may want to create venvs with other tools and with different names (eg. `.venv3.14`)

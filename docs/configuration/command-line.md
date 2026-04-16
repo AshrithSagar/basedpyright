@@ -18,7 +18,7 @@ basedpyright can be run as either a language server or as a command-line tool. T
 | --baselinemode `<MODE>`                 | Specify the [baseline mode](#option-2-baselinemode-experimental)|
 | -p, --project `<FILE OR DIRECTORY>`     | Use the configuration file at this location                     |
 | --pythonpath `<FILE>`                   | Path to the Python interpreter [^3]                             |
-| --pythonplatform `<PLATFORM>`           | Analyze for platform (Darwin, Linux, Windows)                   |
+| --pythonplatform `<PLATFORM>`           | Analyze for platform (Darwin, Linux, Windows, iOS, Android)     |
 | --pythonversion `<VERSION>`             | Analyze for version (3.3, 3.4, etc.)                            |
 | --skipunannotated                       | Skip type analysis of unannotated functions                     |
 | --stats                                 | Print detailed performance stats                                |
