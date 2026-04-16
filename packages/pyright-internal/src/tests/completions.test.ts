@@ -987,8 +987,8 @@ test('completion MRU affects sort order', async () => {
     assert(truly2?.sortText);
     assert(trueDivide2?.sortText);
 
-    // Now the selected item is in MRU: promoted to RecentKeywordOrSymbol category (05) with index (0000).
-    assert(truly2.sortText.startsWith('05.0000.'));
+    // Now the selected item is in MRU: promoted to RecentKeywordOrSymbol category (06) with index (0000).
+    assert(truly2.sortText.startsWith('06.0000.'));
     assert(trueDivide2.sortText.startsWith('09.9999.'));
 
     // Reset MRU list so it doesn't affect other tests.

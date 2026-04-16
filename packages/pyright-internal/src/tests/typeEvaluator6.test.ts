@@ -475,6 +475,7 @@ test('MatchSequenceVariadic', () => {
     const configOptions = new ConfigOptions(Uri.empty());
 
     configOptions.defaultPythonVersion = pythonVersion3_12;
+    configOptions.diagnosticRuleSet.reportUnusedVariable = 'none'; // prevent any hints that aren't unreachable related
     const analysisResults = TestUtils.typeAnalyzeSampleFiles(['matchSequenceVariadic.py'], configOptions);
     // After fix: should be 4 errors and 0 unreachable code
     TestUtils.validateResults(analysisResults, 4, 0, undefined, 0);
