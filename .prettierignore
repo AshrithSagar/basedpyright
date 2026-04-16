@@ -12,7 +12,8 @@ docs/configuration/*.md
 docs/development/internals.md
 docs/getting_started/**/*.md
 docs/usage/**/*.md
-SECURITY.md
+.github/agents/**/*.md
+.github/copilot-instructions.md
 
 **/.venv/**
 .pyprojectx
