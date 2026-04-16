@@ -398,7 +398,7 @@ describe(`Basic language server tests`, () => {
                 // Make sure the error has a special rule
                 assert.ok(
                     file.diagnostics.some((d) => d.code === 'reportUnknownParameterType'),
-                    `Expected diagnostic not found. Got ${JSON.stringify(diagnostic.diagnostics)}`
+                    `Expected diagnostic not found. Got ${JSON.stringify(file.diagnostics)}`
                 );
 
                 // make sure additional diagnostic severities work

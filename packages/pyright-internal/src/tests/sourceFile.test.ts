@@ -58,9 +58,18 @@ test('SourceFile setInitialDiagnosticRuleSet overrides default', () => {
     const offRuleSet = getOffDiagnosticRuleSet();
     assert.strictEqual(offRuleSet.reportPrivateImportUsage, 'none');
 
-    const sourceFile = new SourceFile(serviceProvider, Uri.file(filePath, serviceProvider), () => '', false, false, {
-        isEditMode: false,
-    });
+    const sourceFile = new SourceFile(
+        serviceProvider,
+        Uri.file(filePath, serviceProvider),
+        () => '',
+        false,
+        false,
+        {
+            isEditMode: false,
+        },
+        new BaselineHandler(fs, new ConfigOptions(Uri.file(process.cwd(), serviceProvider)), undefined),
+        () => undefined
+    );
 
     // Call setInitialDiagnosticRuleSet to apply config-level overrides.
     sourceFile.setInitialDiagnosticRuleSet(offRuleSet);

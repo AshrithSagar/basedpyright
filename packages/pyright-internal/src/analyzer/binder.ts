@@ -1293,10 +1293,7 @@ export class Binder extends ParseTreeWalker {
         //   - All return/raise: preElseLabel gets nothing. Post-loop is unreachable.
         //   - Mix with continue: if any continues occurred, use preForLabel for else path.
         if (isGuaranteedToExecute) {
-            if (
-                this._currentFlowNode!.flags &
-                (FlowFlags.UnreachableStructural | FlowFlags.UnreachableStaticCondition)
-            ) {
+            if (this._currentFlowNode!.flags & FlowFlags.Unreachable) {
                 // Check if any continue statements added back-edges to preForLabel.
                 const hasContinueBackEdges = preForLabel.antecedents.length > preBodyAntecedentCount;
 

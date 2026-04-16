@@ -28,7 +28,6 @@ import { parseTestData } from '../harness/fourslash/fourSlashParser';
 import * as PyrightTestHost from '../harness/testHost';
 import { clearCache } from '../harness/vfs/factory';
 
-import { IPythonMode } from '../../analyzer/sourceFile';
 import { BackgroundAnalysis, BackgroundAnalysisRunner } from '../../backgroundAnalysis';
 import { IBackgroundAnalysis } from '../../backgroundAnalysisBase';
 import { serialize } from '../../backgroundThreadBase';
@@ -174,11 +173,8 @@ class TestServer extends PyrightServer {
         return undefined;
     }
 
-    protected override async onDidOpenTextDocument(
-        params: DidOpenTextDocumentParams,
-        ipythonMode?: IPythonMode
-    ): Promise<void> {
-        await super.onDidOpenTextDocument(params, ipythonMode);
+    protected override async onDidOpenTextDocument(params: DidOpenTextDocumentParams): Promise<void> {
+        await super.onDidOpenTextDocument(params);
         CustomLSP.sendNotification(this.connection, CustomLSP.Notifications.TestSignal, {
             uri: params.textDocument.uri,
             kind: CustomLSP.TestSignalKinds.DidOpenDocument,

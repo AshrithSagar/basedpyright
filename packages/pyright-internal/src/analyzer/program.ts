@@ -59,11 +59,7 @@ const _maxImportDepth = 256;
 // Helper function to check if a diagnostic should be filtered due to disableTaggedHints.
 // Tagged hints include unreachable code, unused code, and deprecated symbols.
 function isTaggedHintDiagnostic(diag: Diagnostic): boolean {
-    return (
-        diag.category === DiagnosticCategory.UnreachableCode ||
-        diag.category === DiagnosticCategory.UnusedCode ||
-        diag.category === DiagnosticCategory.Deprecated
-    );
+    return diag.category === DiagnosticCategory.Hint;
 }
 
 export interface MaxAnalysisTime {
